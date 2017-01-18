@@ -1,0 +1,31 @@
+---
+baseurl: "https://extrafinewriter.com/"
+disablePathToLower: true
+languageCode: en-gb
+title: "Extra Fine Writer"
+publishdir: ./_output/hugo-stage-1/
+pluralizelisttitles: "false"
+footnoteReturnLinkContents: "^"
+
+params:
+  description: "Reviewing, among other stuff, Fountain Pens with fine and extra-fine nibs."
+  author: Peter Y. Chuang
+  Urlimg: "assets/img/"
+taxonomies:
+  tag: "tag"
+  category: "categories"
+
+ignoreFiles:
+  - /_output
+  - /_public
+  - /_img
+  - /_less
+  - /.git
+
+MetaDataFormat: "yaml"
+pygmentsuseclasses: true
+
+blackfriday:
+  plainIDAnchors: true
+  extensions:
+  - hardLineBreak

@@ -1,0 +1,50 @@
+{{ if .Params.header.image }}
+  <header data-src="/{{ .Site.Params.Urlimg }}{{ .Params.header.image }}">
+    <div class="img">
+      <div class="container layer">
+{{ else if eq .URL "/404/" }}
+  <header class="error" data-src="/{{ .Site.Params.Urlimg }}default.jpg">
+    <div class="img">
+      <div class="container layer">
+{{ else }}
+  <header data-src="/{{ .Site.Params.Urlimg }}default.jpg">
+    <div class="img">
+      <div class="container layer">
+{{ end }}
+        <div class="heading">
+        {{ if .IsNode }}
+          {{ if eq .URL "/404/" }}
+            <h1 class="brand-heading">{{ .Title | markdownify }}</h1>
+            <hr class="small">
+            <span class="subheading">Maybe the page was moved or deleted; or did you mistype the link?</span>
+          {{ else if eq .Data.Singular "tag" }}
+            <h1 class="brand-heading">All posts tagged “{{ .Title | markdownify }}”</h1>
+          {{ else }}
+            <h1 class="brand-heading">{{ .Title | markdownify }}</h1>
+            <hr class="small">
+            <span class="subheading">Because we all like the finer things in life</span>
+          {{ end }}
+        {{ else }}
+        <h1 class="brand-heading">{{ .Title | markdownify }}</h1>
+        {{ end }}
+          {{ if .Description }}
+            <hr class="small">
+            <span class="subheading">{{ .Description | markdownify }}</span>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </header>
+  {{ if .Params.header.caption_url }}
+  <figure>
+    <figcaption class="text-right">
+      <a href="{{ .Params.header.caption_url }}">{{ .Params.header.caption | markdownify }}</a>
+    </figcaption>
+  </figure>
+  {{ else if .Params.header.caption }}
+  <figure>
+    <figcaption class="text-right">
+      {{ .Params.header.caption | markdownify }}
+    </figcaption>
+  </figure>
+  {{ end }}

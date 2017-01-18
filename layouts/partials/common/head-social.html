@@ -1,0 +1,57 @@
+<!-- Open Graph Type -->
+  {{ if .IsHome }}
+    <meta name="og:type" content="website" />
+  {{ else if eq .URL "404.html" }}
+    <!-- Do Nothing -->
+  {{ else if .IsNode }}
+    <meta name="og:type" content="website" />
+  {{ else if .IsPage }}
+    {{ if eq .Layout "tag-list" }}
+      <meta name="og:type" content="website" />
+    {{ else }}
+      <meta name="og:type" content="article" />
+    {{ end }}
+  {{ end }}
+
+<!-- Open Graph Title -->
+  {{ if .IsHome }}
+    <meta name="og:title" content="{{ .Site.Title | markdownify }}" />
+  {{ else }}
+    <meta name="og:title" content="{{ .Title | markdownify}} | {{ .Site.Title | markdownify }}" />
+  {{ end }}
+
+<!-- Open Graph URL -->
+  {{ if eq .URL "404.html" }}
+    <!-- Do Nothing -->
+  {{ else }}
+    <meta name="og:url" content="{{ .Permalink }}" />
+  {{ end }}
+
+<!-- Open Graph Image -->
+  {{ if .IsHome }}
+    <meta name="og:image" content="{{ .Site.BaseURL }}{{ .Site.Params.Urlimg }}screenshot.jpg" />
+  {{ else if .Params.header.image }}
+    <meta name="og:image" content="{{ .Site.BaseURL }}{{ .Site.Params.Urlimg }}{{ .Params.header.image }}" />
+  {{ else }}
+    <meta name="og:image" content="{{ .Site.BaseURL }}{{ .Site.Params.Urlimg }}default.jpg" />
+  {{ end }}
+
+<!-- Open Graph Description -->
+  {{ if .IsHome }}
+    <meta name="og:description" content="{{ .Site.Params.description | markdownify }}" />
+  {{ else if eq .Data.Singular "tag" }}
+    <meta name="og:description" content="All posts tagged “{{ .Title | markdownify }}”" />
+  {{ else if .IsPage }}
+    {{ if eq .Layout "tag-list" }}
+      <meta name="og:description" content="A list of all tags" />
+    {{ else }}
+      <meta name="og:description" content="{{ .Description | markdownify }}" />
+    {{ end }}
+  {{ end }}
+
+<!-- Open Graph Site Name -->
+  <meta name="og:site_name" content="{{ .Site.Title | markdownify }}" />
+
+<!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@peterychuang" />
